@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apa Kabarmu?</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h2>
+        Apa kabarmu? Apakah semuanya baik-baik saja akhir-akhir ini?
+        <br />Ceritakan ya!
+      </h2>
+      <form action="javascript:void(0);" method="GET" onsubmit="saveMessage()">
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          cols="50"
+          placeholder="Ceritakan kabarmu di sini..."
+        ></textarea>
+        <br />
+        <button type="submit" class="yes-btn">Kirim</button>
+      </form>
+
+      <div id="response" style="display: none">
+        <p>Wah, aku sangat penasaran lebih lanjut tentang ceritamu itu!:3</p>
+        <a href="miss-u-1.html"
+          ><button class="continue-btn">Lanjut!</button></a
+        >
+      </div>
+    </div>
+
+    <script>
+      // Memuat pesan yang disimpan di localStorage saat halaman dimuat
+      window.onload = function () {
+        var storedMessage = localStorage.getItem("message");
+        if (storedMessage) {
+          document.getElementById("message").value = storedMessage;
+        }
+      };
+
+      // Menyimpan pesan ke localStorage dan menampilkan respons setelah klik kirim
+      function saveMessage() {
+        var message = document.getElementById("message").value;
+        localStorage.setItem("message", message);
+
+        // Menampilkan teks dan tombol 'Lanjut!' setelah pesan disimpan
+        document.querySelector("form").style.display = "none"; // Menyembunyikan form
+        document.getElementById("response").style.display = "block"; // Menampilkan respons
+      }
+    </script>
+  </body>
+</html>

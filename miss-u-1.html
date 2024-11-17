@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h2 class="question">私に会えなくて寂しい？</h2>
+      <img
+        class="gif"
+        alt="gif"
+        src="https://media2.giphy.com/media/o68jNgNZiCV7PaBGsV/giphy.gif?cid=6c09b9529z9jmql4vxlvqt9m0e1j8wynil0mouhwjdfpt2gr&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g"
+      />
+      <div class="btn-group">
+        <button class="yes-btn">Yes</button>
+        <button class="no-btn">No</button>
+      </div>
+    </div>
+
+    <script>
+      const wrapper = document.querySelector(".wrapper");
+      const question = document.querySelector(".question");
+      const gif = document.querySelector(".gif");
+      const yesBtn = document.querySelector(".yes-btn");
+      const noBtn = document.querySelector(".no-btn");
+
+      // Array untuk gambar yang muncul saat tombol "No" bergerak
+      const images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"];
+
+      let imageIndex = 0; // Menyimpan urutan gambar yang sudah ditampilkan
+
+      yesBtn.addEventListener("click", () => {
+        question.innerHTML = "I miss you too!";
+        gif.src =
+          "https://media2.giphy.com/media/fvN5KrNcKKUyX7hNIA/giphy.gif?cid=6c09b952fzjqqpctr847tzz2h9w5wihtcy4m88a2rrmrviir&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s";
+        noBtn.style.display = "none"; // Menghilangkan tombol "No"
+
+        // Menghapus semua gambar yang ada
+        const allImages = document.querySelectorAll("img");
+        allImages.forEach((img) => img.remove());
+
+        // Arahkan ke halaman berikutnya setelah klik "Yes"
+        setTimeout(() => {
+          window.location.href = "miss-u-2.html"; // Ganti dengan file halaman ketiga
+        }, 2000); // Tunggu 2 detik sebelum berpindah
+      });
+
+      noBtn.addEventListener("mouseover", () => {
+        // Mendapatkan ukuran window dan posisi tombol
+        const maxX = window.innerWidth - noBtn.offsetWidth;
+        const maxY = window.innerHeight - noBtn.offsetHeight;
+
+        // Menentukan posisi acak untuk tombol "No"
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        noBtn.style.position = "absolute";
+        noBtn.style.left = `${randomX}px`;
+        noBtn.style.top = `${randomY}px`;
+
+        // Menampilkan gambar secara acak setelah tombol bergerak
+        if (imageIndex < images.length) {
+          const randomImage = images[imageIndex];
+          const newImg = document.createElement("img");
+          newImg.src = randomImage;
+          newImg.style.position = "absolute";
+          newImg.style.left = `${randomX + 50}px`; // Agar gambar tidak menutupi tombol
+          newImg.style.top = `${randomY + 50}px`; // Agar gambar muncul sedikit di bawah posisi tombol
+          newImg.style.maxWidth = "200px"; // Ukuran gambar
+          newImg.style.zIndex = "1"; // Agar gambar muncul di atas tombol
+          wrapper.appendChild(newImg); // Menambahkan gambar ke dalam wrapper
+
+          imageIndex++; // Mengincrement index gambar
+        }
+      });
+    </script>
+  </body>
+</html>

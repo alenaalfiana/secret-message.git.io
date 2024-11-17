@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h2 class="question">I miss you too!</h2>
+      <img
+        class="gif"
+        src="https://media2.giphy.com/media/fvN5KrNcKKUyX7hNIA/giphy.gif?cid=6c09b952fzjqqpctr847tzz2h9w5wihtcy4m88a2rrmrviir&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s"
+        alt="gif"
+      />
+    </div>
+
+    <script>
+      // Menunggu gambar GIF muncul terlebih dahulu sebelum menghapus gambar lainnya
+      window.onload = function () {
+        // Menghapus semua gambar selain gambar GIF
+        const allImages = document.querySelectorAll("img:not(.gif)");
+        allImages.forEach((img) => img.remove());
+      };
+    </script>
+  </body>
+</html>
